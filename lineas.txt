@@ -1,0 +1,14 @@
+Consideraciones:
+
+1. Por cada cliente, se hará envío de 1 (uno) solo csv con ordenes
+
+2. Se están usando los csv de ejemplo (de moodle) para clientes 
+retail y pyme por el momento. Si se testeará con otros, deben agregarse
+en "arch/" y al correr la instancia, se debe dar el nombre en formato
+<nombre>.csv
+
+3. El envío de órdenes es bloqueante por 2 razones: evitar errores de 
+escritura en el servidor; y para proveer todos los códigos de seguimiento
+al cliente antes de solicitar el seguimiento.
+
+4.

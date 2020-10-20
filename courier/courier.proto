@@ -1,0 +1,58 @@
+syntax = "proto3";
+option go_package = "github.com/digutier/finsd/courier";
+
+message Mensaje {
+    string body = 1;
+}
+
+message OrdenPyme {
+    string id = 1;
+    string producto = 2;
+    int64 valor = 3;
+    string tienda = 4;
+    string destino = 5;
+    int64 prioridad = 6;
+}
+
+message Paquete {
+    string id = 1;
+    string seguimiento = 2;
+    string tipo = 3;
+    int64 valor = 4;
+    string tienda = 5;
+    string estado = 6;
+    string destino = 7;  
+}
+
+message Entrega {
+    string id = 1;
+    int64 dignipesos = 2;
+    string estado = 3;
+    int64 intentos = 4;
+    string fechaentrega = 5;
+}
+
+message OrdenRetail {
+    string id = 1;
+    string producto = 2;
+    int64 valor = 3;
+    string tienda = 4;
+    string destino = 5;
+}
+
+message Codigo {
+    int64 cod = 1; 
+}
+//Si, existe el paquete que importa el mensaje Empty creado
+//por Google, pero daba problemas de implementacion
+message Empty{
+}
+service CourierService {
+    rpc EnviarOrdenPyme(OrdenPyme) returns (Codigo) {}
+    rpc EnviarOrdenRetail(OrdenRetail) returns (Empty){}
+    rpc Seguimiento(Codigo) returns (Mensaje) {}
+    rpc PedirRetail(Mensaje) returns (Paquete) {}
+    rpc PedirPrioritario(Mensaje) returns (Paquete) {}
+    rpc PedirNormal(Mensaje) returns (Paquete) {}
+    rpc ResultadoEntrega(Entrega) returns (Mensaje) {}
+}
